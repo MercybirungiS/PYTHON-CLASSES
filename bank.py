@@ -1,3 +1,5 @@
+from datetime import datetime
+
 class Account():
     def __init__(self,name,phone):
         self.name=name
@@ -6,15 +8,32 @@ class Account():
         self.transaction_fee=30
         self.loan=0
         self.loan_limit=5000
-        self.interest=0.5
+        self.interest=5
+        self.transactions=[]
+        self.withdrawals=[]
+        self.borrow=[]
+
+
+        
 
     def deposit(self,amount):
+    
         if amount <=0:
+            
             return "enter a valid amount"
         else:
-             self.balance+=amount
+            self.balance+=amount
+            transaction={
+                "amount":amount,
+                "naration":"You deposited",
+                "balance":self.balance,
+                "time":datetime.now()
+            }
+            self.transactions.append(transaction)
+            self.balance+=amount
         return (f"Hello {self.name}.You have deposited {amount} . Your new balance is {self.balance}!")
     def withdraw (self,amount):
+
         total=amount+self.transaction_fee
         if amount <0:
             return ("Increase on the amount you want to withdraw")
@@ -25,20 +44,73 @@ class Account():
           
         else:
             self.balance-=total
+            withdraw={
+                "amount":amount,
+                "naration":"You have withdrawn",
+                "balance":self.balance,
+                "time":datetime.now()
+            }
+            self.withdrawals.append(withdraw)
             return  (f" You have withdrawn {amount}, Your newbalance is {self.balance }")
-    def borrow  (self,loan):
-        total =self.interest * loan
-        total_amount=loan+total
-        if loan>self.loan_limit:
-            return "That is not a valid amount"
+def borrow(self,loan):
+        loan_fees = self.loan_interest * loan / 100
+        
+        if loan < 0:
+            return "Please enter a valid amount"
+
         elif loan > self.loan_limit:
-            return "Your loan can not be greater than the loan limit"
-        elif loan >0:
-            return "You have an outstanding balance"
-        else :
-            self.loan=total_amount
-            self.balance+=loan
-            return (f"You have borrowed {loan} and you will be charged an interest of {total} .Your new account balance is {self.balance}")
+            return "please enter a lower amount"
+
+        elif  self.loan > 0:
+            return "You have an outstanding loan"
+
+        else:
+            
+            repay = loan + loan_fees
+            self.loan += repay
+            self.balance += loan
+            borrowing={
+                "amount":"amount",
+                "naration":"You have borrowed",
+                "balance":self.balance,
+                "time":datetime.now()
+                }
+            self.borrow.append(borrowing)
+            return f"You have received a loan of {loan} your account balance now is {self.balance},the amount you will repay is {self.loan}"
+def repay(self,amount):
+        if amount<=0:
+            return "Pay more money"
+        elif amount>self.loan:
+            extra_amount=amount-self.loan
+            self.balance+=extra_amount
+            transaction={
+                "amount":amount,
+                "balance":self.balance,
+                "narration":"You repaid",
+                "time":datetime.now()
+            }
+            self.transactions.append(transaction)
+            return "you have paid {} in excess. It has been added to your account".format(extra_amount)
+        else:
+            self.loan-=amount
+            transaction={
+                "amount":amount,
+                "balance":self.balance,
+                "narration":"You repaid",
+                "time":datetime.now()
+            }
+            self.transactions.append(transaction)
+            return "you have paid {}. outstanding loan balance is {}".format(amount,self.loan)
+
+  
+def get_statement(self): 
+         for transaction in self.transactions :
+            amount=transaction["amount"]
+            naration=transaction["naration"]
+            balance=transaction["balance"]
+            time=transaction["time"]
+            date=time.strftime("%D")
+            print(f"{date}........ {naration}....... {amount}.......Balance {balance}")
 
 
 
@@ -47,11 +119,3 @@ class Account():
 
         
 
-        
-
-
-
-    # def phone_Number(self):
-    #     return f"Your account number is {self.acc_No}. Thank you for trusting us!"
-    # def account_type(self):
-    #return f"Your account type is {self.acc_type}.Thank you for trusting us !
