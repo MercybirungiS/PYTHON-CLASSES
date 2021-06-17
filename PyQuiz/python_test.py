@@ -66,19 +66,17 @@ def divisible_by_seven():
 
 divisible_by_seven()
 
-# # number 7
-#    students = [{"age": 19, "name": "Eunice"}, {"age": 21, "name": "Agnes"},
-#  {"age": 18, "name": "Teresa"}, {"age": 22, "name": "Asha"}], 
+# number 7
+students = [{"age": 19, "name": "Eunice"}, {"age": 21, "name": "Agnes"},{"age": 18, "name": "Teresa"}, {"age": 22, "name": "Asha"}]
+def greeting(*g):
+    for student in students:
+        print("Hello {}, you were born in the year {}".format(student['name'],2021-student['age']))
+
+greeting()
 
 
-#    def greet (**Kwargs):
-#  name=students["name"]
-# age=students["age"]
-#     year=2021-["age"]
-#    for student in students:
 
-#        print(f"Hello {name} you were born in {year} ")
-       
+
 
 
 
