@@ -86,10 +86,10 @@ class Rectangle:
     def __init__(self,width,length):
         self.width=width
         self.length=length
-    def area(self):
+    def rect_area(self):
         area=self.width*self.length
         return area
-    def perimeter(self):
+    def rect_perimeter(self):
         perimeter=2*(self.length+self.width)
         return perimeter
 
