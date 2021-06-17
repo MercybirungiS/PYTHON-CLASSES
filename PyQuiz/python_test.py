@@ -3,6 +3,7 @@
 from typing import AsyncGenerator
 
 
+
 x = [100,110,120,130,140,150]
 y=[]
 a=1
@@ -78,22 +79,24 @@ greeting([{"age": 19, "name": "Eunice"},
 
 
 
+
+# 8
+
 class Rectangle:
     def __init__(self,width,length):
         self.width=width
         self.length=length
     def area(self):
-        the_area=self.width*self.length
-        return the_area
+        A=self.width*self.length
+        return A
     def perimeter(self):
-        the_perimeter=2*(self.length+self.width)
-        return the_perimeter
-rectangle=Rectangle(10,20)
+        P=2*(self.length+self.width)
+        return P
+
+
+rectangle=Rectangle(8,6)
 print(rectangle.area())
-print(rectangle.perimeter())     
-
-
-
+print(rectangle.perimeter())
 
 
 
