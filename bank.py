@@ -144,15 +144,15 @@ class MobileMoneyAccount(Account):
             }
             self.transactions.append(transaction)
             return "you have paid {} in excess. It has been added to your account".format(excess_amount)
-            self.loan-=amount
-            transaction={
+        self.loan-=amount
+        transaction={
                 "amount":amount,
                 "balance":self.balance,
                 "narration":"You repaid",
                 "time":datetime.now()
             }
-            self.transactions.append(transaction)
-            return "you have paid {}. outstanding loan balance is {}".format(amount,self.loan)
+        self.transactions.append(transaction)
+        return "you have paid {}. outstanding loan balance is {}".format(amount,self.loan)
 
     def statement(self):
        
@@ -160,7 +160,8 @@ class MobileMoneyAccount(Account):
             amount=transaction['amount']
             narration=transaction['narration']
             balance=transaction['balance']
+           
             time=transaction['time']
-            date=time.strftime('%D')
+            date=time.strftime('D')
         
             print('''{}.......{}.......{}.....Balance {}'''.format(date,narration,amount,balance,))
